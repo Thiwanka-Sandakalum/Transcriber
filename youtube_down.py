@@ -1,6 +1,6 @@
 from pytube import YouTube
-import subprocess
-from tqdm import tqdm
+from converter import convert
+
 
 def download_audio_from_youtube(url):
     """
@@ -11,18 +11,6 @@ def download_audio_from_youtube(url):
     output_file = youtube.title + ".mp3"
     audio_stream.download(output_path=".", filename=output_file)
     print(youtube.title + " downloaded successfully!")
-    file_name = youtube.title
-    convert(file_name)
 
-
-def convert(file_name):
     # convert mp3 to wav
-    print("converting.............")
-    subprocess.call(['ffmpeg', '-i', f'{file_name}.mp3', '-ar',
-                    '16000', '-ac', '1', '-c:a', 'pcm_s16le', 'output.wav'])
-
-    # remove downloaded mp3 file
-    subprocess.run(['rm', '-f', f'{file_name}.mp3'])
-
-    # close the progress bar
-    return f'{file_name}.wav'
+    convert(output_file)

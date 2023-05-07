@@ -2,7 +2,7 @@ import os
 
 
 def run_process(output_type):
-    command = f"./main -m models/ggml-tiny.bin -f , output.wav {output_type}  -of /workspaces/Transcriber/output"
+    command = f"./main -m ggml-tiny.bin -f , output.wav {output_type} "
     try:
         os.system(command)
     except OSError as error:
