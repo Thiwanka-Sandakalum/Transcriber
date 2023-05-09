@@ -2,7 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
-from converter import convert
+from converter import convert_audio_to_wav
 import os
 
 class PodcastDownloader:
@@ -65,7 +65,8 @@ class PodcastDownloader:
 
             # convert .mp3 to .wav
             print("Converting...")
-            convert(f'{file_name}.mp3')
+            output_path = "model/output.wav"
+            convert_audio_to_wav(f'{file_name}.mp3',output_path)
 
             # remove downloaded mp3 file
             os.remove(f'{file_name}.mp3')

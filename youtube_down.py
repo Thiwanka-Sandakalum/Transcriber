@@ -1,6 +1,8 @@
 from pytube import YouTube
-from converter import convert
+from converter import convert_audio_to_wav
+import os
 
+output_path = "model/output.wav"
 
 def download_audio_from_youtube(url):
     """
@@ -12,5 +14,7 @@ def download_audio_from_youtube(url):
     audio_stream.download(output_path=".", filename=output_file)
     print(youtube.title + " downloaded successfully!")
 
-    # convert mp3 to wav
-    convert(output_file)
+    # Convert mp3 to wav
+    convert_audio_to_wav(input_file=output_file, output_file=output_path)
+
+    os.remove(output_file)
